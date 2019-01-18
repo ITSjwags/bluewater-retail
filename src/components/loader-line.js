@@ -151,7 +151,7 @@ const LoaderLine = ({ bottom, number }) => (
             useEasing
             easingFn={easing}
           />
-          mph
+          <span> mph</span>
         </>
       )}
     </Center>
