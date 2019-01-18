@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, keyframes } from 'styled-components';
+import CountUp from 'react-countup';
 
 const barKeyframes = keyframes`
   0% {
@@ -134,22 +135,38 @@ const Right = styled.span`
   }
 `;
 
-const LoaderLine = ({ bottom, text }) => (
+const easing = (t, b, c, d) => -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;
+
+const LoaderLine = ({ bottom, number }) => (
   <Bar bottom={bottom}>
     <Left bottom={bottom} />
-    <Center bottom={bottom}>{text}</Center>
+    <Center bottom={bottom}>
+      {number && (
+        <>
+          <CountUp
+            start={0}
+            end={number || 0}
+            delay={3}
+            duration={10}
+            useEasing
+            easingFn={easing}
+          />
+          mph
+        </>
+      )}
+    </Center>
     <Right bottom={bottom} />
   </Bar>
 );
 
 LoaderLine.propTypes = {
   bottom: PropTypes.bool,
-  text: PropTypes.string,
+  number: PropTypes.number,
 };
 
 LoaderLine.defaultProps = {
   bottom: false,
-  text: '',
+  number: null,
 };
 
 export default LoaderLine;

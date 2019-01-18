@@ -27,22 +27,37 @@ const Video = styled.video`
   left: 0;
 `;
 
-const capacitorKeyframes = keyframes`
+const rotate = keyframes`
   0% {
-    opacity: 0;
     transform: rotate(19deg);
   }
   25% {
-    opacity: 1;
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(19deg);
+  }
+  75% {
+    transform: rotate(38deg);
+  }
+  100% {
+    transform: rotate(19deg);
+  }
+`;
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
   }
   100% {
     opacity: 1;
-    transform: rotate(0deg);
   }
 `;
 
 const Capacitor = styled.img`
-  animation: ${capacitorKeyframes} 1s ease-in-out 1s forwards;
+  animation:
+    ${rotate} 4s linear 3s infinite,
+    ${fadeIn} 1s linear 2s forwards;
   flex: 1;
   margin: 0 auto;
   opacity: 0;
@@ -56,10 +71,10 @@ class Loader extends Component {
     return (
       <Container>
         <Video autoPlay loop muted playsInline>
-          <source src={LoaderMp4} type="video/mp4" />
           <source src={LoaderWebM} type="video/webm" />
+          <source src={LoaderMp4} type="video/mp4" />
         </Video>
-        <LoaderLine text="88 MPH" />
+        <LoaderLine number={88} />
         <Capacitor src={CapacitorIcon} alt="Loading" />
         <LoaderLine bottom />
         <LoaderBar />
