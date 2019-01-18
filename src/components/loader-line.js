@@ -5,14 +5,14 @@ import styled, { css, keyframes } from 'styled-components';
 const barKeyframes = keyframes`
   0% {
     opacity: 0;
-    max-width: 192px;
+    width: 0%;
   }
   25% {
     opacity: 1;
   }
   100% {
     opacity: 1;
-    max-width: 100%;
+    width: 100%;
   }
 `;
 
@@ -24,8 +24,8 @@ const Bar = styled.div`
   opacity: 0;
   overflow: hidden;
   position: relative;
-  width: 100%;
-  max-width: 192px;
+  width: 0%;
+  min-width: 192px;
 `;
 
 const Left = styled.span`

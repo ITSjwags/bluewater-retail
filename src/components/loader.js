@@ -22,7 +22,7 @@ const Video = styled.video`
   height: 100%;
   object-fit: cover;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 `;

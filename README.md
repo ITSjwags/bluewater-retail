@@ -25,5 +25,17 @@ Get an optimized production build for your site generating static HTML and per-r
 yarn build
 ```
 
+### Serve
+Gatsby starts a local HTML server for testing your built site.
+```shell
+yarn serve
+```
+
+### Clean
+Remove the .cache and public for a scratch compile.
+```shell
+yarn clean
+```
+
 ## Deployment
 All the files are on GitHub and hosted using Netlify with it's CDN and CI so everything committed to master automatically gets deployed live.
