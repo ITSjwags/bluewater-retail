@@ -56,7 +56,6 @@ class LoaderBar extends Component {
       breakLines: false,
       nextStringDelay: 2000,
       startDelay: 3000,
-      waitUntilVisible: true,
     }).go();
   }
 
