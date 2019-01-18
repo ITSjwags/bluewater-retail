@@ -2,19 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, keyframes } from 'styled-components';
 
-const open = keyframes`
+const barKeyframes = keyframes`
   0% {
+    opacity: 0;
     max-width: 192px;
   }
+  25% {
+    opacity: 1;
+  }
   100% {
+    opacity: 1;
     max-width: 100%;
   }
 `;
 
 const Bar = styled.div`
-  animation: ${open} 1s ease-in-out 1s forwards;
+  animation: ${barKeyframes} 1s ease-in-out 1s forwards;
   display: flex;
+  flex-shrink: 0;
   margin: 0 auto;
+  opacity: 0;
   overflow: hidden;
   position: relative;
   width: 100%;

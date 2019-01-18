@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import LoaderLine from './loader-line';
 import LoaderBar from './loader-bar';
@@ -12,20 +11,11 @@ const Container = styled.div`
   flex-direction: column;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
+  min-height: 520px;
+  margin: 0 auto;
   padding: 24px;
   position: relative;
-`;
-
-const VideoWrapper = styled.div`
-  &::after {
-    background: rgba(0, 0, 0, 0.4);
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
+  max-width: 915px;
 `;
 
 const Video = styled.video`
@@ -37,32 +27,38 @@ const Video = styled.video`
   left: 0;
 `;
 
-const rotate = keyframes`
+const capacitorKeyframes = keyframes`
   0% {
+    opacity: 0;
     transform: rotate(19deg);
   }
+  25% {
+    opacity: 1;
+  }
   100% {
+    opacity: 1;
     transform: rotate(0deg);
   }
 `;
 
 const Capacitor = styled.img`
-  animation: ${rotate} 1s ease-in-out 1s forwards;
+  animation: ${capacitorKeyframes} 1s ease-in-out 1s forwards;
   flex: 1;
+  margin: 0 auto;
+  opacity: 0;
   position: relative;
   transform: rotate(19deg);
+  max-width: 300px;
 `;
 
 class Loader extends Component {
   render() {
     return (
       <Container>
-        <VideoWrapper>
-          <Video autoPlay loop muted playsInline>
-            <source src={LoaderMp4} type="video/mp4" />
-            <source src={LoaderWebM} type="video/webm" />
-          </Video>
-        </VideoWrapper>
+        <Video autoPlay loop muted playsInline>
+          <source src={LoaderMp4} type="video/mp4" />
+          <source src={LoaderWebM} type="video/webm" />
+        </Video>
         <LoaderLine text="88 MPH" />
         <Capacitor src={CapacitorIcon} alt="Loading" />
         <LoaderLine bottom />
@@ -71,9 +67,5 @@ class Loader extends Component {
     );
   }
 }
-
-// Loader.propTypes = {};
-
-// Loader.defaultProps = {};
 
 export default Loader;

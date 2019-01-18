@@ -20,11 +20,13 @@ const Box = styled.div`
   font-size: 14px;
   font-weight: bold;
   min-height: 100px;
-  margin-top: 24px;
+  margin: 24px auto 0;
   padding: 24px;
   position: relative;
   text-align: center;
   text-transform: uppercase;
+  width: 100%;
+  max-width: 327px;
 `;
 
 const LoaderBar = () => (
