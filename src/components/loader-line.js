@@ -17,15 +17,14 @@ const barKeyframes = keyframes`
 `;
 
 const Bar = styled.div`
-  animation: ${barKeyframes} 1s ease-in-out 1s forwards;
+  animation: ${barKeyframes} 1s ease-in-out 2s forwards;
   display: flex;
   flex-shrink: 0;
   margin: 0 auto;
   opacity: 0;
   overflow: hidden;
   position: relative;
-  width: 0%;
-  min-width: 192px;
+  width: 100%;
 `;
 
 const Left = styled.span`
