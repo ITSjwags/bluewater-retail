@@ -12,8 +12,9 @@
   "scripts": {
     "start": "npm run develop",
     "develop": "gatsby develop",
+    "mobile": "gatsby develop -H 192.168.1.57 -p 8000",
     "build": "gatsby build",
-    "serve": "gatsby serve",
+    "serve": "gatsby serve -H 192.168.1.57 -p 9000",
     "clean": "rm -rf public/ .cache/",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
@@ -28,6 +29,7 @@
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.0.8",
     "gatsby-transformer-sharp": "^2.1.8",
+    "gsap": "^2.0.2",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-countup": "^4.0.0",

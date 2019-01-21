@@ -15,7 +15,7 @@ class IndexPage extends Component {
   componentDidMount() {
     this.setViewportHeight();
     window.addEventListener('resize', () => this.setViewportHeight());
-    setTimeout(() => this.setState({ isLoading: false }), 15000);
+    // setTimeout(() => this.setState({ isLoading: false }), 15000);
   }
 
   componentWillUnmount() {

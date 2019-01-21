@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, keyframes } from 'styled-components';
 import CountUp from 'react-countup';
+import { TweenLite } from 'gsap';
 
 const barKeyframes = keyframes`
   0% {
@@ -18,14 +19,14 @@ const barKeyframes = keyframes`
 `;
 
 const Bar = styled.div`
-  animation: ${barKeyframes} 1s ease-in-out 1s forwards;
+  /* animation: ${barKeyframes} 1s ease-in-out 1s forwards; */
   display: flex;
   flex-shrink: 0;
   margin: 0 auto;
   opacity: 0;
   overflow: hidden;
   position: relative;
-  width: 100%;
+  width: 0%;
 `;
 
 const Left = styled.span`
@@ -135,29 +136,44 @@ const Right = styled.span`
   }
 `;
 
-const easing = (t, b, c, d) => -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;
+class LoaderLine extends Component {
+  constructor(props) {
+    super(props);
+    this.line = React.createRef();
+    this.tween = null;
+  }
 
-const LoaderLine = ({ bottom, number }) => (
-  <Bar bottom={bottom}>
-    <Left bottom={bottom} />
-    <Center bottom={bottom}>
-      {number && (
-        <>
-          <CountUp
-            start={0}
-            end={number || 0}
-            delay={3}
-            duration={10}
-            useEasing
-            easingFn={easing}
-          />
-          <span> mph</span>
-        </>
-      )}
-    </Center>
-    <Right bottom={bottom} />
-  </Bar>
-);
+  componentDidMount() {
+    this.tween = TweenLite.to(this.line.current, 1, { opacity: 1, width: '100%' }).delay(1);
+  }
+
+  render() {
+    const { bottom, number } = this.props;
+    const easing = (t, b, c, d) => (-c / 2) * (Math.cos((Math.PI * t) / d) - 1) + b;
+
+    return (
+      <Bar bottom={bottom} ref={this.line}>
+        <Left bottom={bottom} />
+        <Center bottom={bottom}>
+          {number && (
+            <>
+              <CountUp
+                start={0}
+                end={number || 0}
+                delay={3}
+                duration={10}
+                useEasing
+                easingFn={easing}
+              />
+              <span> mph</span>
+            </>
+          )}
+        </Center>
+        <Right bottom={bottom} />
+      </Bar>
+    );
+  }
+}
 
 LoaderLine.propTypes = {
   bottom: PropTypes.bool,
