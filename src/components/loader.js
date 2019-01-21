@@ -74,8 +74,14 @@ class Loader extends Component {
     };
   }
 
-  setLoadingStatus = () => {
-    this.setState({ isVideoLoaded: true });
+  setLoadingStatus = (e) => {
+    const player = e.target;
+    const b = setInterval(() => {
+      if (player.readyState >= 3) {
+        this.setState({ isVideoLoaded: true });
+        clearInterval(b);
+      }
+    }, 500);
   }
 
   render() {
@@ -83,7 +89,7 @@ class Loader extends Component {
 
     return (
       <>
-        <Video autoPlay loop muted playsInline onLoadedData={this.setLoadingStatus}>
+        <Video autoPlay loop muted playsInline preload="auto" onLoadedData={this.setLoadingStatus}>
           <source src={LoaderWebM} type="video/webm" />
           <source src={LoaderMp4} type="video/mp4" />
         </Video>
