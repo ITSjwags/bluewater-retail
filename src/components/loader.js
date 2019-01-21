@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import LoaderLine from './loader-line';
 import LoaderBar from './loader-bar';
@@ -66,19 +66,38 @@ const Capacitor = styled.img`
   max-width: 300px;
 `;
 
-const Loader = () => (
-  <>
-    <Video autoPlay loop muted playsInline>
-      <source src={LoaderWebM} type="video/webm" />
-      <source src={LoaderMp4} type="video/mp4" />
-    </Video>
-    <Container>
-      <LoaderLine number={88} />
-      <Capacitor src={CapacitorIcon} alt="Loading" />
-      <LoaderLine bottom />
-      <LoaderBar />
-    </Container>
-  </>
-);
+class Loader extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isVideoLoaded: false,
+    };
+  }
+
+  setLoadingStatus = () => {
+    this.setState({ isVideoLoaded: true });
+  }
+
+  render() {
+    const { isVideoLoaded } = this.state;
+
+    return (
+      <>
+        <Video autoPlay loop muted playsInline onLoadedData={this.setLoadingStatus}>
+          <source src={LoaderWebM} type="video/webm" />
+          <source src={LoaderMp4} type="video/mp4" />
+        </Video>
+        {isVideoLoaded && (
+          <Container>
+            <LoaderLine number={88} />
+            <Capacitor src={CapacitorIcon} alt="Loading" />
+            <LoaderLine bottom />
+            <LoaderBar />
+          </Container>
+        )}
+      </>
+    );
+  }
+}
 
 export default Loader;
