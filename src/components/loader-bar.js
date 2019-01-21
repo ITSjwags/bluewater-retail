@@ -2,22 +2,17 @@ import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import TypeIt from 'typeit';
 
-const boxKeyframes = keyframes`
+const fadeIn = keyframes`
   0% {
     opacity: 0;
-    width: 0%;
-  }
-  25% {
-    opacity: 1;
   }
   100% {
     opacity: 1;
-    width: 100%;
   }
 `;
 
 const Box = styled.div`
-  animation: ${boxKeyframes} 1s ease-in-out 2s forwards;
+  animation: ${fadeIn} 1s ease-in-out 2s forwards;
   background:
     linear-gradient(to right, ${({ theme }) => theme.colors.white} 1px, transparent 1px) 0 0,
     linear-gradient(to right, ${({ theme }) => theme.colors.white} 1px, transparent 1px) 0 100%,
@@ -42,7 +37,7 @@ const Box = styled.div`
   position: relative;
   text-align: center;
   text-transform: uppercase;
-  width: 0%;
+  width: 100%;
   max-width: 327px;
 `;
 

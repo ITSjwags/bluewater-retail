@@ -3,22 +3,17 @@ import PropTypes from 'prop-types';
 import styled, { css, keyframes } from 'styled-components';
 import CountUp from 'react-countup';
 
-const barKeyframes = keyframes`
+const fadeIn = keyframes`
   0% {
     opacity: 0;
-    width: 0%;
-  }
-  25% {
-    opacity: 1;
   }
   100% {
     opacity: 1;
-    width: 100%;
   }
 `;
 
 const Bar = styled.div`
-  animation: ${barKeyframes} 1s ease-in-out 1s forwards;
+  animation: ${fadeIn} 1s ease-in-out 1s forwards;
   display: flex;
   flex-shrink: 0;
   margin: 0 auto;
