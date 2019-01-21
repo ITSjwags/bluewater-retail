@@ -77,7 +77,7 @@ class Loader extends Component {
   setLoadingStatus = (e) => {
     const player = e.target;
     const b = setInterval(() => {
-      if (player.readyState >= 3) {
+      if (player.readyState === 4) {
         this.setState({ isVideoLoaded: true });
         clearInterval(b);
       }
