@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import GridBG from './grid-bg';
 
 class Content extends Component {
   render() {
     return (
       <>
         <main>
+          <GridBG />
           Content
         </main>
         <footer>

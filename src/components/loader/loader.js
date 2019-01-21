@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import LoaderLine from './loader-line';
 import LoaderBar from './loader-bar';
-import LoaderMp4 from '../assets/loader.mp4';
-import LoaderWebM from '../assets/loader.webm';
-import CapacitorIcon from '../assets/capacitor.svg';
+import LoaderMp4 from '../../assets/loader.mp4';
+import LoaderWebM from '../../assets/loader.webm';
+import CapacitorIcon from '../../assets/capacitor.svg';
 
 const Container = styled.div`
   display: flex;
