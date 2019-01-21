@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import LoaderLine from './loader-line';
 import LoaderBar from './loader-bar';
@@ -22,7 +22,7 @@ const Video = styled.video`
   height: 100%;
   object-fit: cover;
   width: 100%;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
 `;
@@ -56,8 +56,8 @@ const fadeIn = keyframes`
 
 const Capacitor = styled.img`
   animation:
-    ${rotate} 4s linear 3s infinite,
-    ${fadeIn} 1s linear 2s forwards;
+    ${rotate} 4s linear 2s infinite,
+    ${fadeIn} 1s linear 1s forwards;
   flex: 1;
   margin: 0 auto;
   opacity: 0;
@@ -66,21 +66,19 @@ const Capacitor = styled.img`
   max-width: 300px;
 `;
 
-class Loader extends Component {
-  render() {
-    return (
-      <Container>
-        <Video autoPlay loop muted playsInline>
-          <source src={LoaderWebM} type="video/webm" />
-          <source src={LoaderMp4} type="video/mp4" />
-        </Video>
-        <LoaderLine number={88} />
-        <Capacitor src={CapacitorIcon} alt="Loading" />
-        <LoaderLine bottom />
-        <LoaderBar />
-      </Container>
-    );
-  }
-}
+const Loader = () => (
+  <>
+    <Video autoPlay loop muted playsInline>
+      <source src={LoaderWebM} type="video/webm" />
+      <source src={LoaderMp4} type="video/mp4" />
+    </Video>
+    <Container>
+      <LoaderLine number={88} />
+      <Capacitor src={CapacitorIcon} alt="Loading" />
+      <LoaderLine bottom />
+      <LoaderBar />
+    </Container>
+  </>
+);
 
 export default Loader;

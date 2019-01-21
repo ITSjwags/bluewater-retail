@@ -18,7 +18,7 @@ const barKeyframes = keyframes`
 `;
 
 const Bar = styled.div`
-  animation: ${barKeyframes} 1s ease-in-out 2s forwards;
+  animation: ${barKeyframes} 1s ease-in-out 1s forwards;
   display: flex;
   flex-shrink: 0;
   margin: 0 auto;
