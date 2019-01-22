@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import GridBG from './grid-bg';
+import Cover from './cover';
 
 class Content extends Component {
   render() {
     return (
       <>
-        <main>
-          <GridBG />
-          Content
-        </main>
-        <footer>
+        <Cover />
+        {/* <footer>
           Footer stuff
-        </footer>
+        </footer> */}
       </>
     );
   }

@@ -1,6 +1,27 @@
 // based on this pen: https://codepen.io/kuka/pen/GpJZQL
 
-const fractionOfSize = 100;
+let fractionOfSize;
+if (window.innerWidth <= 640) {
+  fractionOfSize = 70;
+} else {
+  fractionOfSize = 120;
+}
+
+// HELPERS
+function debounce(func, wait, immediate) {
+  var timeout;
+  return function () {
+    var context = this, args = arguments;
+    var later = function () {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+};
 
 // DOTS
 function Dots(element) {
@@ -12,7 +33,7 @@ function Dots(element) {
   this.init();
 }
 
-Dots.prototype.init = function () {
+Dots.prototype.init = function() {
   this.wrapper = document.createElement('div');
   this.wrapper.className = 'ui-layer-dots';
   this.quantity = this.settings.horizontal * this.settings.vertical;
@@ -25,33 +46,22 @@ Dots.prototype.init = function () {
   this.setup();
   this.draw();
 
-  // ideally here is supposed to be a debouncer to limit drawings and bugs
-  window.addEventListener(
-    'resize',
-    () => {
-      this.draw();
-    },
-  );
-  window.addEventListener(
-    'orientationchange',
-    () => {
-      this.draw();
-    },
-  );
+  window.addEventListener('resize',() => debounce(this.draw(), 250));
+  window.addEventListener('orientationchange',() => debounce(this.draw(), 250));
 
   return {
     wrapper: this.wrapper,
   };
 };
 
-Dots.prototype.random = function (limit) {
+Dots.prototype.random = function(limit) {
   return Math.random() * limit;
 };
 
-Dots.prototype.setup = function () {
+Dots.prototype.setup = function() {
   for (var i, i = 0; i < this.quantity; i++) {
     const dot = document.createElement('span');
-    dot.innerHTML = "+";
+    dot.innerHTML = '+';
     dot.className = 'ui-layer-dot';
 
     this.dots.push(dot);
@@ -61,12 +71,12 @@ Dots.prototype.setup = function () {
   this.element.appendChild(this.wrapper);
 };
 
-Dots.prototype.updateDimensions = function () {
+Dots.prototype.updateDimensions = function() {
   this.width = window.innerWidth;
   this.height = window.innerHeight;
 };
 
-Dots.prototype.draw = function () {
+Dots.prototype.draw = function() {
   this.updateDimensions();
 
   this.row = 0;
@@ -80,9 +90,8 @@ Dots.prototype.draw = function () {
   this.isInitialized = true;
 };
 
-Dots.prototype.drawDot = function (dot, index) {
-  let x; let y; let
-    random;
+Dots.prototype.drawDot = function(dot, index) {
+  let x; let y; let random;
 
   random = this.random(100);
 
@@ -114,18 +123,14 @@ Dots.prototype.drawDot = function (dot, index) {
     dot.style.transform = val;
     dot.style.msTransform = val;
   } else {
-    var val = `translate3d(${
-      Math.random() * window.innerWidth
-      }px,${
-      Math.random() * window.innerHeight
-      }px, 0)`;
+    var val = `translate3d(${Math.random() * window.innerWidth}px,${Math.random() * window.innerHeight}px, 0)`;
     dot.style.MozTransform = val;
     dot.style.WebkitTransform = val;
     dot.style.transform = val;
     dot.style.msTransform = val;
 
     setTimeout(() => {
-      let val = 'translate3d(' + x + 'px,' + y + 'px, 0)';
+      var val = `translate3d(${x}px,${y}px, 0)`;
       dot.style.MozTransform = val;
       dot.style.WebkitTransform = val;
       dot.style.transform = val;

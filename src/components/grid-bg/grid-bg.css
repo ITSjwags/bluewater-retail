@@ -1,10 +1,11 @@
+/* based on this pen: https://codepen.io/kuka/pen/GpJZQL */
+
 .ui-layer-1 {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
   overflow: hidden;
   animation: spin 900ms ease forwards;
   animation-iteration-count: 1;
@@ -37,7 +38,6 @@
   left: 0;
   font-size: 12px;
   line-height: 0.6;
-  z-index: 0;
   color: rgba(0, 0, 0, 0);
   animation: ui-layer-dot 1s ease forwards;
   animation-iteration-count: 1;
@@ -49,15 +49,15 @@
     color: rgba(0, 0, 0, 0);
   }
   30% {
-    color: rgba(0, 0, 0, 0.7);
+    color: rgba(0, 0, 0, 0.4);
   }
   50% {
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.2);
   }
   80% {
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(0, 0, 0, 0.5);
   }
   100% {
-    color: rgba(0, 0, 0, 0.25);
+    color: rgba(0, 0, 0, 0.12);
   }
 }
