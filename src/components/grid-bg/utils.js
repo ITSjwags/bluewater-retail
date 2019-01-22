@@ -1,7 +1,7 @@
 // based on this pen: https://codepen.io/kuka/pen/GpJZQL
 
 let fractionOfSize;
-if (window.innerWidth <= 640) {
+if (typeof window !== 'undefined' && window.innerWidth <= 640) {
   fractionOfSize = 70;
 } else {
   fractionOfSize = 120;
