@@ -8,7 +8,7 @@ const Layout = ({ children }) => (
   <ThemeProvider theme={theme}>
     <>
       <GlobalStyles />
-      <main>
+      <main id="fullpage">
         {children}
       </main>
     </>

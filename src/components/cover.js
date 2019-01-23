@@ -15,10 +15,10 @@ const fadeIn = keyframes`
 
 const bounce = keyframes`
   0% {
-    transform: translateY(0)
+    transform: translateY(0);
   }
   100% {
-    transform: translateY(3px)
+    transform: translateY(3px);
   }
 `;
 
@@ -80,12 +80,15 @@ const BottomBar = styled.span`
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 8px;
+  height: 100%;
+  transition: all 250ms ease-out;
+  transform: scaleY(0.01);
+  transform-origin: bottom;
   width: 100%;
 `;
 
 const Cover = () => (
-  <>
+  <div className="section">
     <GridBG />
     <Container>
       <PaddedWrapper>
@@ -104,7 +107,7 @@ const Cover = () => (
       </PaddedWrapper>
       <BottomBar />
     </Container>
-  </>
+  </div>
 );
 
 export default Cover;
