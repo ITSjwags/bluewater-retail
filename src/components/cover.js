@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import GridBG from './grid-bg';
 import LogoSrc from '../assets/logo.svg';
-import ArrowSrc from '../assets/arrow.svg';
+import Arrow from '../assets/arrow';
 
 const fadeIn = keyframes`
   0% {
@@ -69,10 +69,8 @@ const ScrollText = styled.span`
   text-transform: uppercase;
 `;
 
-const ScrollImg = styled.img`
+const ScrollImg = styled.div`
   animation: ${bounce} 1s ease-out alternate infinite;
-  display: block;
-  margin: 5px auto 0;
 `;
 
 const BottomBar = styled.span`
@@ -103,7 +101,7 @@ const Cover = () => (
       </Content>
       <PaddedWrapper>
         <ScrollText>Scroll</ScrollText>
-        <ScrollImg src={ArrowSrc} alt="Scroll down" />
+        <ScrollImg><Arrow /></ScrollImg>
       </PaddedWrapper>
       <BottomBar />
     </Container>

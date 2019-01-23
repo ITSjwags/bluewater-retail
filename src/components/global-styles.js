@@ -22,6 +22,11 @@ const Styles = createGlobalStyle`
     font-size: 18px;
     line-height: 1.3;
   }
+
+  /* hack needed from fullpage.js overscroll */
+  .iScrollVerticalScrollbar {
+    display: none !important;
+  }
 `;
 
 const GlobalStyles = () => (
