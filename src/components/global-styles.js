@@ -5,6 +5,8 @@ import { Normalize } from 'styled-normalize';
 const Styles = createGlobalStyle`
   html {
     box-sizing: border-box;
+
+    --containerWidth: 900px;
   }
 
   *,

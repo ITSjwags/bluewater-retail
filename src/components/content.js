@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Cover from './cover';
 import BackgroundSrc from '../assets/bg.jpg';
 import BackgroundLargeSrc from '../assets/bg-lg.jpg';
+import LogoSrc from '../assets/logo-full.svg';
+import Blurb from './blurb';
 
 const Container = styled.section`
   background: ${({ theme }) => theme.colors.navy} url(${({ bg }) => bg}) top center;
@@ -15,21 +17,26 @@ const Container = styled.section`
   }
 `;
 
-const Child = styled.div`
-  color: white;
+const Header = styled.header`
   padding: 24px;
-  min-height: 200vh;
 `;
 
 const Content = () => (
   <>
     <Cover />
-    <Container bg={BackgroundSrc} bgL={BackgroundLargeSrc} className="section">
-      <Child>Add content here</Child>
-      {/* <footer>
-        Footer stuff
-      </footer> */}
-    </Container>
+    <div className="section">
+      <Container
+        bg={BackgroundSrc}
+        bgL={BackgroundLargeSrc}
+      >
+        <Header><img src={LogoSrc} alt="Bluewater" /></Header>
+        <Blurb />
+
+        {/* <footer>
+          Footer stuff
+        </footer> */}
+      </Container>
+    </div>
   </>
 );
 
