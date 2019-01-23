@@ -88,7 +88,7 @@ const BottomBar = styled.span`
 `;
 
 const Cover = () => (
-  <div className="section">
+  <div className="section fp-noscroll">
     <GridBG />
     <Container>
       <PaddedWrapper>
