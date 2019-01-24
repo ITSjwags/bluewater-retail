@@ -7,6 +7,7 @@ import LogoSrc from '../assets/logo-full.svg';
 import Blurb from './blurb';
 import About from './about';
 import Process from './process';
+import Clients from './clients';
 
 const Container = styled.section`
   background: ${({ theme }) => theme.colors.navy} url(${({ bg }) => bg}) no-repeat top center;
@@ -27,14 +28,12 @@ const Content = () => (
   <>
     <Cover />
     <div className="section">
-      <Container
-        bg={BackgroundSrc}
-        bgL={BackgroundLargeSrc}
-      >
+      <Container bg={BackgroundSrc} bgL={BackgroundLargeSrc}>
         <Header><img src={LogoSrc} alt="Bluewater" /></Header>
         <Blurb />
         <About />
         <Process />
+        <Clients />
 
         {/* <footer>
           Footer stuff
