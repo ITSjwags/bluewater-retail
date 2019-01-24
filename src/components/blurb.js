@@ -14,7 +14,7 @@ const Title = styled.h2`
   font-weight: normal;
   margin: 0;
 
-  @media(min-width: 768px) {
+  @media(min-width: 769px) {
     font-size: 64px;
   }
 `;

@@ -6,15 +6,16 @@ import BackgroundLargeSrc from '../assets/bg-lg.jpg';
 import LogoSrc from '../assets/logo-full.svg';
 import Blurb from './blurb';
 import About from './about';
+import Process from './process';
 
 const Container = styled.section`
-  background: ${({ theme }) => theme.colors.navy} url(${({ bg }) => bg}) top center;
-  background-size: cover;
+  background: ${({ theme }) => theme.colors.navy} url(${({ bg }) => bg}) no-repeat top center;
+  background-size: contain;
   position: relative;
 
   @media(min-width: 768px) {
     background: ${({ theme }) => theme.colors.navy} url(${({ bgL }) => bgL}) no-repeat top center;
-    background-size: cover;
+    background-size: contain;
   }
 `;
 
@@ -33,6 +34,7 @@ const Content = () => (
         <Header><img src={LogoSrc} alt="Bluewater" /></Header>
         <Blurb />
         <About />
+        <Process />
 
         {/* <footer>
           Footer stuff

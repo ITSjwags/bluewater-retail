@@ -13,9 +13,9 @@ const Container = styled.article`
 `;
 
 const Content = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 104px; /* 40px plus carousel bottom padding for button of 64px*/
 
-  @media(min-width: 768px) {
+  @media(min-width: 769px) {
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -31,7 +31,7 @@ const Tagline = styled.h2`
     color: ${({ theme }) => theme.colors.retail};
   }
 
-  @media(min-width: 768px) {
+  @media(min-width: 769px) {
     font-size: 40px;
     max-width: 400px;
   }
@@ -41,14 +41,13 @@ const CarouselContainer = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.retail};
   margin: 0 auto;
   padding-top: 8px;
-  padding-bottom: 64px;
   max-width: 418px;
 
   .slider-control-bottomright {
     bottom: -64px !important;
   }
 
-  @media(min-width: 768px) {
+  @media(min-width: 769px) {
     margin: 0;
   }
 `;
@@ -125,6 +124,7 @@ const About = ({ theme }) => (
         <Carousel
           enableKeyboardControls
           initialSlideHeight={430}
+          initialSlideWidth={418}
           renderAnnounceSlideMessage={({ currentSlide, slideCount }) => `Slide ${currentSlide + 1} of ${slideCount}`
           }
           renderCenterLeftControls={() => null}
