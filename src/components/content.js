@@ -8,6 +8,7 @@ import Blurb from './blurb';
 import About from './about';
 import Process from './process';
 import Clients from './clients';
+import Contact from './contact';
 
 const Container = styled.section`
   background: ${({ theme }) => theme.colors.navy} url(${({ bg }) => bg}) no-repeat top center;
@@ -34,6 +35,7 @@ const Content = () => (
         <About />
         <Process />
         <Clients />
+        <Contact />
 
         {/* <footer>
           Footer stuff

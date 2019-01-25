@@ -60,16 +60,31 @@ const Controls = styled.div`
 `;
 
 const Control = styled.button`
-  background-color: ${({ theme }) => theme.colors.retail};
+  background: ${({ theme }) => theme.colors.retail};
+  background: linear-gradient(
+    to left,
+    ${({ theme }) => theme.colors.retail} 50%,
+    ${({ theme }) => theme.colors.retailDark} 50%
+  );
+  background-size: 200% 100%;
+  background-position: right bottom;
   border: 0;
   cursor: pointer;
   margin: 0;
   outline: 0;
   padding: 0;
-  transition: background-color 250ms ease;
+  transition: all 300ms ease;
+
+  &:hover {
+    background-position: left bottom;
+  }
+
+  &:focus {
+    outline: 1px dotted ${({ theme }) => theme.colors.white};
+  }
 
   ${({ disabled }) => disabled && css`
-    background-color: ${({ theme }) => theme.colors.retailMedium};
+    background: ${({ theme }) => theme.colors.retailMedium};
     cursor: not-allowed;
   `}
 `;
