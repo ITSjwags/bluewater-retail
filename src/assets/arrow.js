@@ -1,5 +1,4 @@
 import React from 'react';
-import { withTheme } from 'styled-components';
 import PropTypes from 'prop-types';
 import theme from '../theme';
 
@@ -17,4 +16,4 @@ Arrow.defaultProps = {
   color: theme.colors.retail,
 };
 
-export default withTheme(Arrow);
+export default Arrow;

@@ -2,7 +2,8 @@ const theme = {
   colors: {
     // globals
     gray: 'rgba(255, 255, 255, 0.32)',
-    grayMedium: 'rgba(0, 0, 0, 0.16)',
+    grayLight: 'rgba(0, 0, 0, 0.16)',
+    grayMedium: 'rgba(0, 0, 0, 0.24)',
     grayDark: 'rgba(0, 0, 0, 0.32)',
     // branding
     black: '#000000',

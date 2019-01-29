@@ -9,6 +9,7 @@ import About from './about';
 import Process from './process';
 import Clients from './clients';
 import Contact from './contact';
+import Footer from './footer';
 
 const slideOut = keyframes`
   0% {
@@ -18,7 +19,7 @@ const slideOut = keyframes`
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-200%);
+    transform: translateY(-150%);
   }
 `;
 
@@ -63,7 +64,6 @@ class MainContent extends Component {
 
   onCoverClick = () => {
     this.setState({ animateUp: true });
-
     setTimeout(() => this.setState({ showContent: true }), 1000);
   }
 
@@ -83,6 +83,7 @@ class MainContent extends Component {
             <Process />
             <Clients />
             <Contact />
+            <Footer />
           </Content>
         )}
         <BottomBar ref={this.bar} animateUp={animateUp} />

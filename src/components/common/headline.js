@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import PlusSrc from '../../assets/plus.svg';
+import styled, { withTheme } from 'styled-components';
+import PlusIcon from '../../assets/plus';
 
 const Text = styled.h3`
-  color: ${({ theme }) => theme.colors.retail};
+  color: ${({ color, theme }) => color || theme.colors.retail};
   font-size: 14px;
   margin-bottom: 46px;
   text-transform: uppercase;
@@ -19,16 +19,21 @@ const Text = styled.h3`
   }
 `;
 
-const Headline = ({ text }) => (
-  <Text>
+const Headline = ({ color, text }) => (
+  <Text color={color}>
     {text}
     <span />
-    <img src={PlusSrc} alt="" />
+    <PlusIcon color={color} />
   </Text>
 );
 
 Headline.propTypes = {
+  color: PropTypes.string,
   text: PropTypes.string.isRequired,
 };
 
-export default Headline;
+Headline.defaultProps = {
+  color: undefined,
+};
+
+export default withTheme(Headline);
