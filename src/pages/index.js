@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import ReactFullpage from '@fullpage/react-fullpage';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Loader from '../components/loader';
-import Content from '../components/content';
-
-if (typeof window !== 'undefined') {
-  require('fullpage.js/vendors/scrolloverflow'); // eslint-disable-line global-require
-}
+import MainContent from '../components/main-content';
 
 class IndexPage extends Component {
   constructor(props) {
@@ -40,34 +35,7 @@ class IndexPage extends Component {
         <SEO title="Bluewater" keywords={['bluewater', 'retail']} />
         {isLoading
           ? <Loader />
-          : (
-            <ReactFullpage
-              scrollOverflow
-              scrollOverflowReset
-              // onLeave={(origin, destination, direction) => {
-              //   // after leaving section 2
-              //   if (origin.index === 0 && direction === 'down') {
-              //     do something?
-              //   } if (origin.index === 1 && direction === 'up') {
-              //     do something?
-              //   } else {
-              //     do something?
-              //   }
-              // }}
-              // afterLoad={(origin, destination, direction) => {
-              //   // do something?
-              // }}
-              render={({ state, fullpageApi }) => {
-                console.info('state: ', state);
-                console.info('fullpageApi: ', fullpageApi);
-                return (
-                  <ReactFullpage.Wrapper>
-                    <Content />
-                  </ReactFullpage.Wrapper>
-                );
-              }}
-            />
-          )
+          : <MainContent />
         }
       </Layout>
     );

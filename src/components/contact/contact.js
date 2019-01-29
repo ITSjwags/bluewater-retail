@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Input from './input';
+import Button from '../common/button';
 import LoaderMp4 from '../../assets/loader.mp4';
 import LoaderWebM from '../../assets/loader.webm';
 
@@ -69,46 +70,6 @@ const Form = styled.form`
   }
 `;
 
-const Button = styled.button`
-  background: ${({ theme }) => theme.colors.retail};
-  background: linear-gradient(
-    to left,
-    ${({ theme }) => theme.colors.retail} 50%,
-    ${({ theme }) => theme.colors.retailDark} 50%
-  );
-  background-size: 200% 100%;
-  background-position: right bottom;
-  border: 0;
-  cursor: pointer;
-  margin: 16px 0 0 0;
-  outline: 0;
-  transition: all 300ms ease-out;
-  width: 100%;
-
-  &:hover {
-    background-position: left bottom;
-  }
-
-  &:focus {
-    outline: 1px dotted ${({ theme }) => theme.colors.white};
-  }
-
-  @media (min-width: 769px) {
-    max-width: 192px;
-  }
-`;
-
-const ButtonInner = styled.div`
-  align-items: center;
-  color: ${({ theme }) => theme.colors.white};
-  display: flex;
-  font-size: 14px;
-  font-weight: bold;
-  height: 48px;
-  justify-content: center;
-  text-transform: uppercase;
-`;
-
 const Contact = () => (
   <Container>
     <Video autoPlay loop muted playsInline preload="auto">
@@ -142,11 +103,7 @@ const Contact = () => (
             label="Phone Number"
             name="phone"
           />
-          <Button>
-            <ButtonInner>
-              Submit my info
-            </ButtonInner>
-          </Button>
+          <Button text="Submit my info" fullWidth />
         </Form>
       </Content>
     </Wrapper>

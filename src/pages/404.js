@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'gatsby';
+import { navigate } from 'gatsby';
 import styled from 'styled-components';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import Button from '../components/common/button';
 import LogoSrc from '../assets/logo.svg';
 
 const Container = styled.section`
@@ -19,6 +20,7 @@ const Container = styled.section`
 `;
 
 const Content = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -40,20 +42,6 @@ const Headline = styled.h2`
 const Text = styled.p`
   line-height: 1.95;
   margin: 10px 0 0 0;
-`;
-
-const Button = styled(Link)`
-  background: ${({ theme }) => theme.colors.retail};
-  color: ${({ theme }) => theme.colors.white};
-  display: inline-block;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 0.04em;
-  margin: 50px auto 0;
-  padding: 15px;
-  text-decoration: none;
-  text-transform: uppercase;
-  width: 179px;
 `;
 
 class NotFoundPage extends Component {
@@ -83,7 +71,7 @@ class NotFoundPage extends Component {
             <Text>
               Looks like you traveled too far and the page you’re trying to visit doesn’t exist yet.
             </Text>
-            <Button to="/">Take me back!</Button>
+            <Button text="Take me back!" onClick={() => navigate('/')} role="link" />
           </Content>
         </Container>
       </Layout>

@@ -24,8 +24,10 @@ const StyledInput = styled.input`
   background-repeat: no-repeat;
   background-size: 6px 6px;
   border: 1px solid ${({ theme }) => theme.colors.gray};
+  border-radius: 0;
   color: ${({ theme }) => theme.colors.white};
   height: 60px;
+  line-height: 1.6;
   outline: 0;
   margin: 0;
   padding: 0 16px;
@@ -39,13 +41,11 @@ const StyledInput = styled.input`
 
   &:hover,
   &:focus {
-    background-color: ${({ theme }) => theme.colors.retailMedium};
-    border-color: ${({ theme }) => theme.colors.retailLight};
+    border-color: ${({ theme }) => theme.colors.white};
   }
 
   ${({ value }) => value && css`
-    background-color: ${({ theme }) => theme.colors.retailMedium};
-    border-color: ${({ theme }) => theme.colors.retailLight};
+    border-color: ${({ theme }) => theme.colors.white};
   `};
 `;
 

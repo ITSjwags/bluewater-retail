@@ -23,9 +23,9 @@ const Styles = createGlobalStyle`
     line-height: 1.3;
   }
 
-  /* hack needed from fullpage.js overscroll */
-  .iScrollVerticalScrollbar {
-    display: none !important;
+  ::selection {
+    background-color: ${({ theme }) => theme.colors.retail};
+    color: ${({ theme }) => theme.colors.white};
   }
 `;
 

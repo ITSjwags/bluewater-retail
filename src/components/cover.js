@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import GridBG from './grid-bg';
 import LogoSrc from '../assets/logo.svg';
-import Arrow from '../assets/arrow';
+import Button from './common/button';
 
 const fadeIn = keyframes`
   0% {
@@ -10,15 +11,6 @@ const fadeIn = keyframes`
   }
   100% {
     opacity: 1;
-  }
-`;
-
-const bounce = keyframes`
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(3px);
   }
 `;
 
@@ -62,31 +54,8 @@ const Title = styled.h1`
   }
 `;
 
-const ScrollText = styled.span`
-  color: ${({ theme }) => theme.colors.retail};
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
-`;
-
-const ScrollImg = styled.div`
-  animation: ${bounce} 1s ease-out alternate infinite;
-`;
-
-const BottomBar = styled.span`
-  background-color: ${({ theme }) => theme.colors.retail};
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 100%;
-  transition: all 250ms ease-out;
-  transform: scaleY(0.01);
-  transform-origin: bottom;
-  width: 100%;
-`;
-
-const Cover = () => (
-  <div className="section fp-noscroll">
+const Cover = ({ onActionClick }) => (
+  <>
     <GridBG />
     <Container>
       <PaddedWrapper>
@@ -100,12 +69,14 @@ const Cover = () => (
         </Title>
       </Content>
       <PaddedWrapper>
-        <ScrollText>Scroll</ScrollText>
-        <ScrollImg><Arrow /></ScrollImg>
+        <Button text="Show Me" onClick={() => onActionClick()} />
       </PaddedWrapper>
-      <BottomBar />
     </Container>
-  </div>
+  </>
 );
+
+Cover.propTypes = {
+  onActionClick: PropTypes.func.isRequired,
+};
 
 export default Cover;
