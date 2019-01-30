@@ -139,6 +139,12 @@ class Contact extends Component {
               onSubmit={this.handleFormSubmit}
             >
               <input type="hidden" name="form-name" value="Retail Landing Page" />
+              <p hidden>
+                <label htmlFor="hidden" id="hidden">
+                  <span>Don’t fill this out: </span>
+                  <input name="bot-field" onChange={this.handleChange} />
+                </label>
+              </p>
               <Input
                 type="text"
                 label="First Name"
