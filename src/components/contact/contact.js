@@ -156,10 +156,10 @@ class Contact extends Component {
               data-netlify="true"
               data-netlify-honeypot="bot-field"
               method="post"
-              name="Retail Landing Page"
+              name="retail-contact"
               onSubmit={this.handleFormSubmit}
             >
-              <input type="hidden" name="form-name" value="Retail Landing Page" />
+              <input type="hidden" name="form-name" value="retail-contact" />
               <p hidden>
                 <label htmlFor="hidden" id="hidden">
                   <span>Don’t fill this out: </span>
