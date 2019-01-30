@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { navigate } from 'gatsby';
 import styled from 'styled-components';
 import Input from './input';
 import Button from '../common/button';
@@ -70,35 +71,113 @@ const Form = styled.form`
   }
 `;
 
-const Contact = () => (
-  <Container>
-    <Video autoPlay loop muted playsInline preload="auto">
-      <source src={LoaderWebM} type="video/webm" />
-      <source src={LoaderMp4} type="video/mp4" />
-    </Video>
-    <Wrapper>
-      <Content>
-        <Left data-aos="slide-right">
-          <Title>Want to learn more?</Title>
-          <TitleAlt>Let&apos;s Talk.</TitleAlt>
-        </Left>
-        <Form
-          data-aos="fade"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          method="post"
-          name="Retail Landing Page"
-        >
-          <input type="hidden" name="form-name" value="Retail Landing Page" />
-          <Input type="text" label="First Name" name="firstName" required />
-          <Input type="text" label="Last Name" name="lastName" required />
-          <Input type="email" label="Email Address" name="email" required />
-          <Input type="tel" label="Phone Number" name="phone" required />
-          <Button text="Submit my info" fullWidth />
-        </Form>
-      </Content>
-    </Wrapper>
-  </Container>
-);
+function encode(data) {
+  return Object.keys(data)
+    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+    .join('&');
+}
+
+class Contact extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+    };
+  }
+
+  handleFormSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': form.getAttribute('name'),
+        ...this.state,
+      }),
+    })
+      .then(() => navigate(form.getAttribute('action')))
+      .catch(error => alert(error)); // eslint-disable-line no-alert
+  };
+
+  handleInputChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  render() {
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+    } = this.state;
+    return (
+      <Container>
+        <Video autoPlay loop muted playsInline preload="auto">
+          <source src={LoaderWebM} type="video/webm" />
+          <source src={LoaderMp4} type="video/mp4" />
+        </Video>
+        <Wrapper>
+          <Content>
+            <Left data-aos="slide-right">
+              <Title>Want to learn more?</Title>
+              <TitleAlt>Let&apos;s Talk.</TitleAlt>
+            </Left>
+            <Form
+              action="/"
+              data-aos="fade"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              method="post"
+              name="Retail Landing Page"
+              onSubmit={this.handleFormSubmit}
+            >
+              <input type="hidden" name="form-name" value="Retail Landing Page" />
+              <Input
+                type="text"
+                label="First Name"
+                name="firstName"
+                inputValue={firstName}
+                onInputChange={this.handleInputChange}
+                required
+              />
+              <Input
+                type="text"
+                label="Last Name"
+                name="lastName"
+                inputValue={lastName}
+                onInputChange={this.handleInputChange}
+                required
+              />
+              <Input
+                type="email"
+                label="Email Address"
+                name="email"
+                inputValue={email}
+                onInputChange={this.handleInputChange}
+                required
+              />
+              <Input
+                type="tel"
+                label="Phone Number"
+                name="phone"
+                inputValue={phone}
+                onInputChange={this.handleInputChange}
+                required
+              />
+              <Button text="Submit my info" type="submit" fullWidth />
+            </Form>
+          </Content>
+        </Wrapper>
+      </Container>
+    );
+  }
+}
 
 export default Contact;

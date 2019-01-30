@@ -48,8 +48,13 @@ const Inner = styled.div`
   text-transform: uppercase;
 `;
 
-const Button = ({ fullWidth, onClick, text }) => (
-  <Container onClick={() => onClick()} fullWidth={fullWidth}>
+const Button = ({
+  fullWidth,
+  onClick,
+  text,
+  type,
+}) => (
+  <Container onClick={() => onClick()} fullWidth={fullWidth} type={type}>
     <Inner>
       {text}
     </Inner>
@@ -60,11 +65,13 @@ Button.propTypes = {
   onClick: PropTypes.func,
   fullWidth: PropTypes.bool,
   text: PropTypes.string.isRequired,
+  type: PropTypes.string,
 };
 
 Button.defaultProps = {
   fullWidth: false,
-  onClick: null,
+  onClick: () => {},
+  type: '',
 };
 
 export default Button;

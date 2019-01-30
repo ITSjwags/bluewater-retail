@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
@@ -65,50 +65,35 @@ const Label = styled.label`
   `};
 `;
 
-class Input extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputValue: null,
-    };
-  }
-
-  onInputChange(value) {
-    this.setState({ inputValue: value });
-  }
-
-  render() {
-    const {
-      label,
-      name,
-      type,
-    } = this.props;
-    const { inputValue } = this.state;
-    return (
-      <Container>
-        <StyledInput
-          onChange={e => this.onInputChange(e.target.value)}
-          type={type}
-          name={name}
-          placeholder={label}
-          value={inputValue || ''}
-        />
-        <Label hasValue={!!inputValue}>{label}</Label>
-      </Container>
-    );
-  }
-}
+const Input = ({
+  label,
+  name,
+  type,
+  inputValue,
+  onInputChange,
+}) => (
+  <Container>
+    <StyledInput
+      onChange={e => onInputChange(e)}
+      type={type}
+      name={name}
+      placeholder={label}
+      value={inputValue || ''}
+    />
+    <Label hasValue={!!inputValue}>{label}</Label>
+  </Container>
+);
 
 Input.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string,
-  type: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  inputValue: PropTypes.string,
 };
 
 Input.defaultProps = {
-  label: '',
-  name: '',
-  type: '',
+  inputValue: '',
 };
 
 export default Input;
