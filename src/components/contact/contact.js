@@ -142,7 +142,7 @@ class Contact extends Component {
               <p hidden>
                 <label htmlFor="hidden" id="hidden">
                   <span>Don’t fill this out: </span>
-                  <input name="bot-field" onChange={this.handleChange} />
+                  <input name="bot-field" onChange={this.handleInputChange} />
                 </label>
               </p>
               <Input
