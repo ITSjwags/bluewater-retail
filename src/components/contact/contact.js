@@ -78,31 +78,22 @@ const Contact = () => (
     </Video>
     <Wrapper>
       <Content>
-        <Left>
+        <Left data-aos="slide-right">
           <Title>Want to learn more?</Title>
           <TitleAlt>Let&apos;s Talk.</TitleAlt>
         </Left>
-        <Form>
-          <Input
-            type="text"
-            label="First Name"
-            name="firstName"
-          />
-          <Input
-            type="text"
-            label="Last Name"
-            name="lastName"
-          />
-          <Input
-            type="email"
-            label="Email Address"
-            name="email"
-          />
-          <Input
-            type="tel"
-            label="Phone Number"
-            name="phone"
-          />
+        <Form
+          data-aos="fade"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          method="post"
+          name="Retail Landing Page"
+        >
+          <input type="hidden" name="form-name" value="Retail Landing Page" />
+          <Input type="text" label="First Name" name="firstName" required />
+          <Input type="text" label="Last Name" name="lastName" required />
+          <Input type="email" label="Email Address" name="email" required />
+          <Input type="tel" label="Phone Number" name="phone" required />
           <Button text="Submit my info" fullWidth />
         </Form>
       </Content>

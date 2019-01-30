@@ -29,7 +29,7 @@ const Clients = () => (
     <Headline text="Who we do it for" />
     <Content>
       {images.map(({ id, name, url }) => (
-        <ImageBlock key={id}>
+        <ImageBlock key={id} data-aos="fade-right" data-aos-delay={id * 50}>
           <img src={url} alt={name} />
         </ImageBlock>
       ))}

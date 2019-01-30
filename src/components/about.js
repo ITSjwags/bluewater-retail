@@ -130,12 +130,12 @@ const About = ({ theme }) => (
   <Container>
     <Headline text="We are bluewater" />
     <Content>
-      <Tagline>
+      <Tagline data-aos="slide-right">
         We create unforgettable
         <span> retail </span>
         experiences.
       </Tagline>
-      <CarouselContainer>
+      <CarouselContainer data-aos="slide-left">
         <Carousel
           enableKeyboardControls
           initialSlideHeight={430}

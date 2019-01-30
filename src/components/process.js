@@ -80,7 +80,7 @@ const Process = () => (
   <Container>
     <Headline text="How we do it" />
     <Content>
-      <Block>
+      <Block data-aos="fade-down-right">
         <Icon>
           <img src={ChatSrc} alt="Consultation" />
         </Icon>
@@ -92,7 +92,7 @@ const Process = () => (
           </p>
         </Copy>
       </Block>
-      <Block>
+      <Block data-aos="fade-down-left">
         <Icon>
           <img src={PencilSrc} alt="Design" />
         </Icon>
@@ -104,7 +104,7 @@ const Process = () => (
           </p>
         </Copy>
       </Block>
-      <Block>
+      <Block data-aos="fade-up-right">
         <Icon>
           <img src={TechSrc} alt="Technology" />
         </Icon>
@@ -116,7 +116,7 @@ const Process = () => (
           </p>
         </Copy>
       </Block>
-      <Block>
+      <Block data-aos="fade-up-left">
         <Icon>
           <img src={ToolsSrc} alt="Fabrication" />
         </Icon>

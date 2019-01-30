@@ -30,9 +30,7 @@ const Copy = styled.p`
 `;
 
 const Blurb = () => (
-  <Container
-    data-aos="fade"
-  >
+  <Container data-aos="fade">
     <Title>Brick & mortar isn’t dying.</Title>
     <TitleAlt>It’s evolving.</TitleAlt>
     <Copy>

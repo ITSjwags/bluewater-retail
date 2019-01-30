@@ -87,13 +87,13 @@ const BottomBar = styled.div`
   padding: 48px 24px;
   text-align: center;
 
-  @media(min-width: 550px) {
+  @media (min-width: 550px) {
     align-items: center;
     display: flex;
     justify-content: space-between;
     padding: 32px;
 
-    > img {
+    > div {
       order: 2;
     }
   }
@@ -104,20 +104,22 @@ const Footer = ({ theme }) => (
     <Content>
       <Right>
         <Headline text="What we do" color={theme.colors.secondary} />
-        <Text>
+        <Text data-aos="fade">
           We’ve built our house around creating better experiences. Bluewater is the only
           woman-owned (WBENC) organization of its kind, operating four industry-leading business
           units that support sensory storytelling through digital & physical canvases.
         </Text>
       </Right>
-      <Left>
+      <Left data-aos="fade">
         <Logo src={LogoSrc} alt="Bluewater" />
         <ExitLink href="https://bluewatertech.com/">Check out our website</ExitLink>
       </Left>
     </Content>
     <BottomBar>
-      <img src={WOSrc} alt="Women Owned Business" />
-      <p>&copy; 2019 Bluewater. BlueWater Technologies Group, Inc.</p>
+      <div data-aos="slide-left" data-aos-offset="0">
+        <img src={WOSrc} alt="Women Owned Business" />
+      </div>
+      <p data-aos="slide-right" data-aos-offset="0">&copy; 2019 Bluewater. BlueWater Technologies Group, Inc.</p>
     </BottomBar>
   </Container>
 );
