@@ -7,9 +7,10 @@ const Text = styled.h3`
   color: ${({ color, theme }) => color || theme.colors.retail};
   font-size: 14px;
   margin-bottom: 46px;
+  overflow: hidden;
   text-transform: uppercase;
 
-  > span {
+  > span:first-of-type {
     background-color: ${({ theme }) => theme.colors.gray};
     display: inline-block;
     height: 1px;
@@ -20,10 +21,12 @@ const Text = styled.h3`
 `;
 
 const Headline = ({ color, text }) => (
-  <Text color={color}>
+  <Text color={color} data-aos="fade">
     {text}
-    <span />
-    <PlusIcon color={color} />
+    <span data-aos="slide-right" />
+    <span data-aos="fade" data-aos-delay="500">
+      <PlusIcon color={color} />
+    </span>
   </Text>
 );
 

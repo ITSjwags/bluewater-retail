@@ -16,14 +16,23 @@ const Content = styled.div`
   grid-gap: 50px;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   margin-bottom: 40px;
-  place-items: center;
+`;
+
+const ImageBlock = styled.div`
+  justify-content: center;
+  display: flex;
+  align-items: center;
 `;
 
 const Clients = () => (
   <Container>
     <Headline text="Who we do it for" />
     <Content>
-      {images.map(({ id, name, url }) => <img src={url} alt={name} key={id} />)}
+      {images.map(({ id, name, url }) => (
+        <ImageBlock key={id}>
+          <img src={url} alt={name} />
+        </ImageBlock>
+      ))}
     </Content>
   </Container>
 );

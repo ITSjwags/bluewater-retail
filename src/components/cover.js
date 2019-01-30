@@ -1,28 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import GridBG from './grid-bg';
 import LogoSrc from '../assets/logo.svg';
 import Button from './common/button';
 
-const fadeIn = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
-
 const Container = styled.section`
-  animation: ${fadeIn} 1.5s ease-in-out 1s forwards;
   display: flex;
   flex-direction: column;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
   min-height: 520px;
   margin: 0 auto;
-  opacity: 0;
   position: relative;
   text-align: center;
   width: 100%;
@@ -30,6 +19,7 @@ const Container = styled.section`
 
 const PaddedWrapper = styled.div`
   background: ${({ theme }) => theme.colors.white};
+  overflow: hidden;
   padding: 24px;
   text-align: center;
 `;
@@ -58,18 +48,33 @@ const Cover = ({ onActionClick }) => (
   <>
     <GridBG />
     <Container>
-      <PaddedWrapper>
+      <PaddedWrapper
+        data-aos="fade-down"
+        data-aos-delay="2000"
+        data-aos-offset="0"
+      >
         <img src={LogoSrc} alt="Bluewater" />
       </PaddedWrapper>
       <Content>
-        <Title>
+        <Title
+          data-aos="fade"
+          data-aos-delay="1500"
+          data-aos-duration="1000"
+        >
           Welcome to the
           <span>future</span>
           of retail
         </Title>
       </Content>
-      <PaddedWrapper>
-        <Button text="Show Me" onClick={() => onActionClick()} />
+      <PaddedWrapper
+        data-aos="fade-up"
+        data-aos-delay="2000"
+        data-aos-offset="-100"
+      >
+        <Button
+          text="Show Me"
+          onClick={() => onActionClick()}
+        />
       </PaddedWrapper>
     </Container>
   </>

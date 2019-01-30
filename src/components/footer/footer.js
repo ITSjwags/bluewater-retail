@@ -53,6 +53,9 @@ const Logo = styled.img`
 const ExitLink = styled.a`
   align-items: center;
   background: transparent;
+  background: linear-gradient(to left, transparent 50%, ${({ theme }) => theme.colors.primary} 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
   border: 1px solid ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.primary};
   display: flex;
@@ -64,6 +67,16 @@ const ExitLink = styled.a`
   margin-top: 56px;
   text-decoration: none;
   text-transform: uppercase;
+  transition: all 300ms ease-out;
+
+  &:hover {
+    background-position: left bottom;
+    color: ${({ theme }) => theme.colors.navy};
+  }
+
+  &:focus {
+    outline: 1px dotted ${({ theme }) => theme.colors.white};
+  }
 `;
 
 const BottomBar = styled.div`

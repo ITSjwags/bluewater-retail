@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styled, { css, keyframes } from 'styled-components';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Cover from './cover';
 import BackgroundSrc from '../assets/bg.jpg';
 import BackgroundLargeSrc from '../assets/bg-lg.jpg';
@@ -62,6 +64,19 @@ class MainContent extends Component {
     };
   }
 
+  componentDidMount() {
+    AOS.init({
+      useClassNames: false,
+      mirror: true,
+      offset: 100,
+      duration: 500,
+    });
+  }
+
+  componentDidUpdate() {
+    AOS.refresh();
+  }
+
   onCoverClick = () => {
     this.setState({ animateUp: true });
     setTimeout(() => this.setState({ showContent: true }), 1000);
@@ -76,7 +91,12 @@ class MainContent extends Component {
         ) : (
           <Content bg={BackgroundSrc} bgL={BackgroundLargeSrc}>
             <Header>
-              <img src={LogoSrc} alt="Bluewater" />
+              <img
+                src={LogoSrc}
+                alt="Bluewater"
+                data-aos="fade-down"
+                data-aos-offset="0"
+              />
             </Header>
             <Blurb />
             <About />
