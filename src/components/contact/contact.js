@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { navigate } from 'gatsby';
 import styled from 'styled-components';
 import Input from './input';
 import Button from '../common/button';
@@ -86,21 +85,42 @@ class Contact extends Component {
       lastName: '',
       email: '',
       phone: '',
+      isSending: false,
     };
   }
 
   handleFormSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+    } = this.state;
+
+    this.setState({
+      isSending: true,
+    });
+
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
         'form-name': form.getAttribute('name'),
-        ...this.state,
+        firstName,
+        lastName,
+        email,
+        phone,
       }),
     })
-      .then(() => navigate(form.getAttribute('action')))
+      .then(() => this.setState({
+        isSending: false,
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+      }))
       .catch(error => alert(error)); // eslint-disable-line no-alert
   };
 
@@ -116,6 +136,7 @@ class Contact extends Component {
       lastName,
       email,
       phone,
+      isSending,
     } = this.state;
     return (
       <Container>
@@ -130,7 +151,7 @@ class Contact extends Component {
               <TitleAlt>Let&apos;s Talk.</TitleAlt>
             </Left>
             <Form
-              action="/"
+              // action="/"
               data-aos="fade"
               data-netlify="true"
               data-netlify-honeypot="bot-field"
@@ -177,7 +198,7 @@ class Contact extends Component {
                 onInputChange={this.handleInputChange}
                 required
               />
-              <Button text="Submit my info" type="submit" fullWidth />
+              <Button text={isSending ? 'Sending' : 'Submit my info'} type="submit" fullWidth />
             </Form>
           </Content>
         </Wrapper>

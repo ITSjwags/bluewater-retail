@@ -77,10 +77,11 @@ const Input = ({
       onChange={e => onInputChange(e)}
       type={type}
       name={name}
+      id={name}
       placeholder={label}
       value={inputValue || ''}
     />
-    <Label hasValue={!!inputValue}>{label}</Label>
+    <Label htmlFor={name} hasValue={!!inputValue}>{label}</Label>
   </Container>
 );
 
