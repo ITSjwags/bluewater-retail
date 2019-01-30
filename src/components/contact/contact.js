@@ -91,7 +91,6 @@ class Contact extends Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    const form = e.target;
     const {
       firstName,
       lastName,
@@ -103,17 +102,26 @@ class Contact extends Component {
       isSending: true,
     });
 
-    fetch('/', {
+    fetch('http://go.pardot.com/l/665683/2019-01-30/249q', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
       body: encode({
-        'form-name': form.getAttribute('name'),
         firstName,
         lastName,
         email,
         phone,
       }),
     })
+      .then((res) => {
+        const json = res.json();
+        if (!res.ok) {
+          throw new Error(`unable to submit form: ${json.message || ''}`);
+        }
+        return json;
+      })
       .then(() => this.setState({
         isSending: false,
         firstName: '',
@@ -151,21 +159,11 @@ class Contact extends Component {
               <TitleAlt>Let&apos;s Talk.</TitleAlt>
             </Left>
             <Form
-              // action="/"
               data-aos="fade"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
               method="post"
               name="retail-contact"
               onSubmit={this.handleFormSubmit}
             >
-              <input type="hidden" name="form-name" value="retail-contact" />
-              <p hidden>
-                <label htmlFor="hidden" id="hidden">
-                  <span>Don’t fill this out: </span>
-                  <input name="bot-field" onChange={this.handleInputChange} />
-                </label>
-              </p>
               <Input
                 type="text"
                 label="First Name"
