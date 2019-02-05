@@ -30,10 +30,10 @@ const Copy = styled.p`
 `;
 
 const Blurb = () => (
-  <Container data-aos="fade">
-    <Title>Brick & mortar isn’t dying.</Title>
-    <TitleAlt>It’s evolving.</TitleAlt>
-    <Copy>
+  <Container>
+    <Title data-aos="fade" data-offset="0">Brick & mortar isn’t dying.</Title>
+    <TitleAlt data-aos="fade" data-offset="0">It’s evolving.</TitleAlt>
+    <Copy data-aos="fade">
       The way consumers engage, and what they value has fundamentally changed. Online & mobile
       strategies alone aren’t enough. Today’s retailers must leverage technology forward design to
       create the digitally integrated in-store experiences that appeal to this new type of retail

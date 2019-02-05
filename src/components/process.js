@@ -87,8 +87,9 @@ const Process = () => (
         <Copy>
           <h4>Consultation</h4>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam gravida lacus quis ex
-            malesuada tincidunt. Sed tristique dolor quis sapien efficitur, at mollis dui auctor.
+            Transforming the retail experience doesn’t occur by happenstance. It also isn’t a
+            one-size-fits-all type of situation. Aligning around the objectives and desired
+            outcomes is critical to program success.
           </p>
         </Copy>
       </Block>

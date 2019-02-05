@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Input from './input';
 import Button from '../common/button';
-import LoaderMp4 from '../../assets/loader.mp4';
-import LoaderWebM from '../../assets/loader.webm';
+import FormMp4 from '../../assets/form-bg.mp4';
+import FormWebM from '../../assets/form-bg.webm';
 
 const Container = styled.article`
   overflow: hidden;
@@ -24,11 +24,19 @@ const Wrapper = styled.div`
   margin: 0 auto;
   padding: var(--padding);
   max-width: calc(var(--containerWidth) + var(--padding));
+
+  @media (min-width: 769px) {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+  }
 `;
 
 const Content = styled.div`
   color: ${({ theme }) => theme.colors.white};
   position: relative;
+  width: 100%;
 
   @media (min-width: 769px) {
     align-items: center;
@@ -70,11 +78,9 @@ const Form = styled.form`
   }
 `;
 
-function encode(data) {
-  return Object.keys(data)
-    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-    .join('&');
-}
+const ErrorMessage = styled.p`
+  color: red;
+`;
 
 class Contact extends Component {
   constructor(props) {
@@ -86,6 +92,7 @@ class Contact extends Component {
       email: '',
       phone: '',
       isSending: false,
+      error: null,
     };
   }
 
@@ -102,13 +109,13 @@ class Contact extends Component {
       isSending: true,
     });
 
-    fetch('http://go.pardot.com/l/665683/2019-01-30/249q', {
+    fetch('/.netlify/functions/retail-leads', {
       method: 'POST',
-      mode: 'cors',
       headers: {
+        Accept: 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: encode({
+      body: JSON.stringify({
         firstName,
         lastName,
         email,
@@ -129,7 +136,14 @@ class Contact extends Component {
         email: '',
         phone: '',
       }))
-      .catch(error => alert(error)); // eslint-disable-line no-alert
+      .catch((err) => {
+        // alert(err.message);
+        console.error(err);
+        this.setState({
+          error: err.messsage,
+          isSending: false,
+        });
+      });
   };
 
   handleInputChange = (e) => {
@@ -145,25 +159,30 @@ class Contact extends Component {
       email,
       phone,
       isSending,
+      error,
     } = this.state;
     return (
       <Container>
         <Video autoPlay loop muted playsInline preload="auto">
-          <source src={LoaderWebM} type="video/webm" />
-          <source src={LoaderMp4} type="video/mp4" />
+          <source src={FormWebM} type="video/webm" />
+          <source src={FormMp4} type="video/mp4" />
         </Video>
         <Wrapper>
           <Content>
-            <Left data-aos="slide-right">
+            <Left data-aos="fade-right">
               <Title>Want to learn more?</Title>
               <TitleAlt>Let&apos;s Talk.</TitleAlt>
             </Left>
             <Form
-              data-aos="fade"
-              method="post"
+              data-aos="fade-left"
               name="retail-contact"
               onSubmit={this.handleFormSubmit}
             >
+              {error && (
+                <ErrorMessage>
+                  Whoops! There was an error submitting the form. Please try again.
+                </ErrorMessage>
+              )}
               <Input
                 type="text"
                 label="First Name"

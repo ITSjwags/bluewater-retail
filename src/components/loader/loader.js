@@ -1,31 +1,11 @@
 import React, { Component } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import LoaderLine from './loader-line';
 import LoaderBar from './loader-bar';
 import LoaderMp4 from '../../assets/loader.mp4';
 import LoaderWebM from '../../assets/loader.webm';
 import CapacitorIcon from '../../assets/capacitor.svg';
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-  min-height: 520px;
-  margin: 0 auto;
-  padding: 24px;
-  position: relative;
-  max-width: 915px;
-`;
-
-const Video = styled.video`
-  height: 100%;
-  object-fit: cover;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
+import CapacitorAlignmentIcon from '../../assets/capacitor-alignment.svg';
 
 const rotate = keyframes`
   0% {
@@ -54,53 +34,99 @@ const fadeIn = keyframes`
   }
 `;
 
-const Capacitor = styled.img`
-  animation:
-    ${rotate} 4s linear 2s infinite,
-    ${fadeIn} 1s linear 1s forwards;
-  flex: 1;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  min-height: 520px;
   margin: 0 auto;
+  padding: 24px;
+  position: relative;
+  max-width: 915px;
+
+  ${({ hide }) => hide && css`
+    animation: ${fadeIn} 250ms linear reverse forwards;
+  `}
+`;
+
+const Video = styled.video`
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
+const CapacitorContainer = styled.div`
+  align-items: center;
+  animation: ${fadeIn} 1s linear forwards;
+  display: flex;
+  flex: 1;
   opacity: 0;
+  position: relative;
+`;
+
+const Capacitor = styled.img`
+  animation: ${rotate} 2s linear infinite;
+  margin: 0 auto;
   position: relative;
   transform: rotate(19deg);
   max-width: 300px;
+`;
+
+const CapacitorAlignment = styled.img`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  width: 100%;
 `;
 
 class Loader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isVideoLoaded: false,
+      hideContent: false,
+      isVideoPlaying: false,
     };
     this.player = React.createRef();
   }
 
   componentDidMount() {
+    this.player.current.addEventListener('playing', () => {
+      this.setState({ isVideoPlaying: true });
+    });
     this.setLoadingStatus();
   }
 
   setLoadingStatus = () => {
     const b = setInterval(() => {
-      if (this.player.current.readyState >= 3) {
-        this.setState({ isVideoLoaded: true });
+      console.info(this.player.current.currentTime);
+      if (this.player.current.currentTime >= 4.9) {
+        this.setState({ hideContent: true });
         clearInterval(b);
       }
-    }, 500);
+    }, 250);
   }
 
   render() {
-    const { isVideoLoaded } = this.state;
+    const { hideContent, isVideoPlaying } = this.state;
 
     return (
       <>
-        <Video autoPlay loop muted playsInline preload="auto" ref={this.player}>
+        <Video autoPlay muted playsInline preload="auto" ref={this.player}>
           <source src={LoaderWebM} type="video/webm" />
           <source src={LoaderMp4} type="video/mp4" />
         </Video>
-        {isVideoLoaded && (
-          <Container>
+        {isVideoPlaying && (
+          <Container hide={hideContent}>
             <LoaderLine number={88} />
-            <Capacitor src={CapacitorIcon} alt="Loading" />
+            <CapacitorContainer>
+              <Capacitor src={CapacitorIcon} alt="Loading" />
+              <CapacitorAlignment src={CapacitorAlignmentIcon} alt="" />
+            </CapacitorContainer>
             <LoaderLine bottom />
             <LoaderBar />
           </Container>

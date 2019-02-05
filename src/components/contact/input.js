@@ -39,9 +39,13 @@ const StyledInput = styled.input`
     color: ${({ theme }) => theme.colors.white};
   }
 
-  &:hover,
-  &:focus {
+  &:hover {
     border-color: ${({ theme }) => theme.colors.white};
+  }
+
+  &:focus,
+  &:active {
+    border-color: ${({ theme }) => theme.colors.retail};
   }
 
   ${({ value }) => value && css`
@@ -51,16 +55,17 @@ const StyledInput = styled.input`
 
 const Label = styled.label`
   color: ${({ theme }) => theme.colors.retail};
-  font-size: 12px;
+  font-size: 8px;
   opacity: 0;
   pointer-events: none;
   position: absolute;
   top: 16px;
   left: 16px;
+  text-transform: uppercase;
 
   ${({ hasValue }) => hasValue && css`
     opacity: 1;
-    top: 3px;
+    top: 6px;
     transition: all 0.3s ease-in-out;
   `};
 `;

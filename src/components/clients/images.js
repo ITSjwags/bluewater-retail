@@ -1,5 +1,5 @@
 import BWWSrc from '../../assets/client-bww.png';
-import CadSrc from '../../assets/client-cad.png';
+import TapSrc from '../../assets/client-tap.png';
 import AdiSrc from '../../assets/client-adi.png';
 import WCSrc from '../../assets/client-wc.png';
 import WalSrc from '../../assets/client-wal.png';
@@ -19,8 +19,8 @@ const images = [
   },
   {
     id: 2,
-    name: 'Cadillac',
-    url: CadSrc,
+    name: 'Tappers',
+    url: TapSrc,
   },
   {
     id: 3,

@@ -110,16 +110,16 @@ const Footer = ({ theme }) => (
           units that support sensory storytelling through digital & physical canvases.
         </Text>
       </Right>
-      <Left data-aos="fade">
-        <Logo src={LogoSrc} alt="Bluewater" />
-        <ExitLink href="https://bluewatertech.com/">Check out our website</ExitLink>
+      <Left>
+        <Logo data-aos="fade" src={LogoSrc} alt="Bluewater" />
+        <ExitLink data-aos="fade" href="https://bluewatertech.com/">
+          Check out our website
+        </ExitLink>
       </Left>
     </Content>
     <BottomBar>
-      <div data-aos="slide-left" data-aos-offset="0">
-        <img src={WOSrc} alt="Women Owned Business" />
-      </div>
-      <p data-aos="slide-right" data-aos-offset="0">&copy; 2019 Bluewater. BlueWater Technologies Group, Inc.</p>
+      <img src={WOSrc} alt="Women Owned Business" />
+      <p>&copy; 2019 Bluewater. BlueWater Technologies Group, Inc.</p>
     </BottomBar>
   </Container>
 );

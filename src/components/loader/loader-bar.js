@@ -11,8 +11,17 @@ const fadeIn = keyframes`
   }
 `;
 
+const loading = keyframes`
+  0% {
+    background-position: right bottom;
+  }
+  100% {
+    background-position: left bottom;
+  }
+`;
+
 const Box = styled.div`
-  animation: ${fadeIn} 1s ease-in-out 2s forwards;
+  animation: ${fadeIn} 1s ease-in-out forwards;
   background:
     linear-gradient(to right, ${({ theme }) => theme.colors.white} 1px, transparent 1px) 0 0,
     linear-gradient(to right, ${({ theme }) => theme.colors.white} 1px, transparent 1px) 0 100%,
@@ -33,7 +42,7 @@ const Box = styled.div`
   min-height: 100px;
   margin: 24px auto 0;
   opacity: 0;
-  padding: 24px 0;
+  padding: 24px;
   position: relative;
   text-align: center;
   text-transform: uppercase;
@@ -41,16 +50,28 @@ const Box = styled.div`
   max-width: 327px;
 `;
 
+const LoadingStatus = styled.div`
+  animation: ${loading} 4.9s linear forwards;
+  background: linear-gradient(
+    to left,
+    ${({ theme }) => theme.colors.gray} 50%,
+    ${({ theme }) => theme.colors.retail} 50%
+  );
+  background-size: 200% 100%;
+  background-position: right bottom;
+  height: 8px;
+  width: 100%;
+`;
+
 class LoaderBar extends Component {
   componentDidMount() {
     new TypeIt('.typeit', {
       strings: ['GENERATING 1.21 GIGAWATTS...', 'ACCELERATING TO 88 MPH...'],
-      speed: 50,
+      speed: 35,
       lifeLike: true,
       cursor: false,
       breakLines: false,
-      nextStringDelay: 2000,
-      startDelay: 3000,
+      nextStringDelay: 500,
     }).go();
   }
 
@@ -58,6 +79,7 @@ class LoaderBar extends Component {
     return (
       <Box>
         <p className="typeit">Initializing Flux Capacitor...</p>
+        <LoadingStatus />
       </Box>
     );
   }

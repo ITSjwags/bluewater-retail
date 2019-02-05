@@ -13,7 +13,7 @@ const fadeIn = keyframes`
 `;
 
 const Bar = styled.div`
-  animation: ${fadeIn} 1s ease-in-out 1s forwards;
+  animation: ${fadeIn} 1s ease-in-out forwards;
   display: flex;
   flex-shrink: 0;
   margin: 0 auto;
@@ -141,8 +141,8 @@ const LoaderLine = ({ bottom, number }) => (
           <CountUp
             start={0}
             end={number || 0}
-            delay={3}
-            duration={10}
+            delay={1}
+            duration={4}
             useEasing
             easingFn={easing}
           />

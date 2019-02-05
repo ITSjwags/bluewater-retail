@@ -1,3 +1,5 @@
+const proxy = require('http-proxy-middleware');
+
 module.exports = {
   siteMetadata: {
     title: 'The Future of Retail',
@@ -40,4 +42,15 @@ module.exports = {
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
   ],
+  developMiddleware: (app) => {
+    app.use(
+      '/.netlify/functions/',
+      proxy({
+        target: 'http://localhost:9000',
+        pathRewrite: {
+          '/.netlify/functions/': '',
+        },
+      }),
+    );
+  },
 };
