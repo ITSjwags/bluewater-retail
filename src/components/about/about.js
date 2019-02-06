@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, withTheme } from 'styled-components';
 import Carousel from 'nuka-carousel';
-import Headline from './common/headline';
-import Arrow from '../assets/arrow';
+import Headline from '../common/headline';
+import Arrow from '../../assets/arrow';
+import SlideData from './slideData';
 
 const Container = styled.article`
   --padding: 24px;
@@ -169,14 +170,12 @@ const About = ({ theme }) => (
             );
           }}
         >
-          <Slide>
-            <img src="http://placehold.it/1000x600/ffffff/c0392b/&text=slide1" alt="" />
-            <Infobar>Infobar</Infobar>
-          </Slide>
-          <Slide>
-            <img src="http://placehold.it/1000x600/ffffff/c0392b/&text=slide2" alt="" />
-            <Infobar>Infobar</Infobar>
-          </Slide>
+          {SlideData.map(({ id, name, url }) => (
+            <Slide key={id}>
+              <img src={url} alt={name} />
+              <Infobar>{name}</Infobar>
+            </Slide>
+          ))}
         </Carousel>
       </CarouselContainer>
     </Content>

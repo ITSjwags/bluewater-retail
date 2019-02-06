@@ -51,7 +51,6 @@ const Cover = ({ onActionClick }) => (
       <PaddedWrapper
         data-aos="fade-down"
         data-aos-delay="2000"
-        data-aos-offset="0"
       >
         <img src={LogoSrc} alt="Bluewater" />
       </PaddedWrapper>

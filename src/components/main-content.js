@@ -43,7 +43,9 @@ const BottomBar = styled.span`
 const Content = styled.section`
   background: ${({ theme }) => theme.colors.navy} url(${({ bg }) => bg}) no-repeat top center;
   background-size: contain;
+  overflow-x: hidden;
   position: relative;
+  width: 100%;
 
   @media(min-width: 768px) {
     background: ${({ theme }) => theme.colors.navy} url(${({ bgL }) => bgL}) no-repeat top center;
@@ -68,7 +70,7 @@ class MainContent extends Component {
     AOS.init({
       useClassNames: false,
       mirror: true,
-      offset: 100,
+      offset: 25,
       duration: 500,
     });
   }
@@ -95,7 +97,6 @@ class MainContent extends Component {
                 src={LogoSrc}
                 alt="Bluewater"
                 data-aos="fade-down"
-                data-aos-offset="0"
               />
             </Header>
             <Blurb />
