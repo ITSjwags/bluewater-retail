@@ -21,8 +21,8 @@ const createLead = async (data) => {
   return Promise.resolve();
 };
 
-export async function handler(event) { // eslint-disable-line
-  console.info('body: ', event.body);
+export async function handler(event) { // eslint-disable-line import/prefer-default-export
+  // console.info('body: ', event.body);
 
   // bail if body is missing
   if (!event.body) {
@@ -36,7 +36,7 @@ export async function handler(event) { // eslint-disable-line
 
   // post to pardot
   try {
-    console.info('event received', event.body);
+    // console.info('event received', event.body);
     const body = JSON.parse(event.body);
     const {
       firstName, lastName, email, phone,

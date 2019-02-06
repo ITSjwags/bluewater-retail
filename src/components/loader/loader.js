@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled, { css, keyframes } from 'styled-components';
 import LoaderLine from './loader-line';
 import LoaderBar from './loader-bar';
@@ -102,9 +103,16 @@ class Loader extends Component {
   }
 
   setLoadingStatus = () => {
+    const { isLoading } = this.props;
     const b = setInterval(() => {
-      if (this.player.current.currentTime >= 4.9) {
+      if (this.player.current.currentTime >= 5) {
+        // hide content a little sooner than video ends
+        // so it looks like content is fading out properly
         this.setState({ hideContent: true });
+      }
+      if (this.player.current.currentTime >= 5.75) {
+        // send status to parent to swap components and clear interval
+        isLoading(false);
         clearInterval(b);
       }
     }, 250);
@@ -112,7 +120,6 @@ class Loader extends Component {
 
   render() {
     const { hideContent, isVideoPlaying } = this.state;
-
     return (
       <>
         <Video autoPlay muted playsInline preload="auto" ref={this.player}>
@@ -134,5 +141,9 @@ class Loader extends Component {
     );
   }
 }
+
+Loader.propTypes = {
+  isLoading: PropTypes.func.isRequired,
+};
 
 export default Loader;

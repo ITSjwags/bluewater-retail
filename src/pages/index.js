@@ -15,11 +15,14 @@ class IndexPage extends Component {
   componentDidMount() {
     this.setViewportHeight();
     window.addEventListener('resize', () => this.setViewportHeight());
-    setTimeout(() => this.setState({ isLoading: false }), 6500);
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', () => this.setViewportHeight());
+  }
+
+  setLoadingStatus = (loadingState) => {
+    this.setState({ isLoading: loadingState });
   }
 
   setViewportHeight = () => {
@@ -34,7 +37,7 @@ class IndexPage extends Component {
       <Layout>
         <SEO title="Bluewater" keywords={['bluewater', 'retail']} />
         {isLoading
-          ? <Loader />
+          ? <Loader isLoading={this.setLoadingStatus} />
           : <MainContent />
         }
       </Layout>

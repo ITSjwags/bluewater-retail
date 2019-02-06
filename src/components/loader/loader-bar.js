@@ -67,7 +67,7 @@ class LoaderBar extends Component {
   componentDidMount() {
     new TypeIt('.typeit', {
       strings: ['GENERATING 1.21 GIGAWATTS...'],
-      speed: 50,
+      speed: 45,
       lifeLike: true,
       cursor: false,
       breakLines: false,
