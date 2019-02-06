@@ -159,7 +159,7 @@ class Contact extends Component {
           phone: '',
           error: '',
         });
-        setTimeout(() => this.setState({ sent: false }), 2000);
+        setTimeout(() => this.setState({ sent: false }), 4000);
       })
       .catch((err) => {
         // alert(err.message);

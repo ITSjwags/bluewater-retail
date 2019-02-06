@@ -73,8 +73,4 @@ yarn-error.log
 .vscode/
 
 #misc
-src/functions/.eslintrc.js
-src/functions/gatsby-browser.js
-src/functions/gatsby-config.js
-src/functions/gatsby-node.js
-src/functions/gatsby-ssr.js
+src/functions
