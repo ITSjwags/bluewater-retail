@@ -3,7 +3,7 @@ const proxy = require('http-proxy-middleware');
 module.exports = {
   siteMetadata: {
     title: 'The Future of Retail',
-    description: 'Welcome to the future of retail. Brick & mortar isn’t dying. It’s changing.',
+    description: 'Welcome to the future of retail. Brick & mortar isn’t dying. It’s evolving.',
     author: '@BWTechnologies',
   },
   plugins: [

@@ -65,7 +65,7 @@ const Label = styled.label`
 
   ${({ hasValue }) => hasValue && css`
     opacity: 1;
-    top: 6px;
+    top: 9px;
     transition: all 0.3s ease-in-out;
   `};
 `;

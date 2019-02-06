@@ -68,10 +68,11 @@ const Left = styled.div`
 `;
 
 const Form = styled.form`
+  align-items: flex-end;
   display: flex;
   flex-direction: column;
   flex: 1;
-  align-items: flex-end;
+  position: relative;
 
   @media (min-width: 769px) {
     padding-left: 24px;
@@ -98,6 +99,13 @@ const Confirmation = styled.p`
   ${({ sent }) => sent && css`
     animation: ${fadeOut} 250ms ease-out forwards;
   `}
+
+  @media(min-width: 769px) {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: calc(100% - 24px);
+  }
 `;
 
 class Contact extends Component {
@@ -143,11 +151,10 @@ class Contact extends Component {
       }),
     })
       .then((res) => {
-        const json = res.json();
         if (!res.ok) {
-          throw new Error(`unable to submit form: ${json.message || ''}`);
+          throw new Error(`unable to submit form: ${res.statusText || ''}`);
         }
-        return json;
+        return res;
       })
       .then(() => {
         this.setState({
@@ -161,11 +168,10 @@ class Contact extends Component {
         });
         setTimeout(() => this.setState({ sent: false }), 4000);
       })
-      .catch((err) => {
-        // alert(err.message);
-        console.error(err);
+      .catch((error) => {
+        console.error(error);
         this.setState({
-          error: err.messsage,
+          error,
           isSending: false,
           sent: false,
         });
@@ -243,10 +249,12 @@ class Contact extends Component {
                 required
               />
               <Button text={isSending ? 'Submitting...' : 'Submit my info'} type="submit" fullWidth />
-              <Confirmation sent={sent}>
-                Good news! Your info has successfully been sent from the future.
-                You’ll be hearing from us soon.
-              </Confirmation>
+              {sent && (
+                <Confirmation sent={sent}>
+                  Good news! Your info has successfully been sent from the future.
+                  You’ll be hearing from us soon.
+                </Confirmation>
+              )}
             </Form>
           </Content>
         </Wrapper>

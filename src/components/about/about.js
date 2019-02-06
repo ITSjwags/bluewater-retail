@@ -139,6 +139,7 @@ const About = ({ theme }) => (
       <CarouselContainer data-aos="fade-left">
         <Carousel
           enableKeyboardControls
+          heightMode="max"
           initialSlideHeight={430}
           initialSlideWidth={418}
           renderAnnounceSlideMessage={({ currentSlide, slideCount }) => `Slide ${currentSlide + 1} of ${slideCount}`

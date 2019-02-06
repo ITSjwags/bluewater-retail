@@ -6,20 +6,26 @@ import LoaderBar from './loader-bar';
 import LoaderMp4 from '../../assets/loader.mp4';
 import LoaderWebM from '../../assets/loader.webm';
 import CapacitorIcon from '../../assets/capacitor.svg';
-import CapacitorAlignmentIcon from '../../assets/capacitor-alignment.svg';
+// import CapacitorAlignmentIcon from '../../assets/capacitor-alignment.svg';
 
 const rotate = keyframes`
   0% {
     transform: rotate(19deg);
   }
-  25% {
+  10% {
     transform: rotate(0deg);
   }
-  50% {
+  30% {
+    transform: rotate(57deg);
+  }
+  40% {
     transform: rotate(19deg);
   }
-  75% {
+  60% {
     transform: rotate(38deg);
+  }
+  85% {
+    transform: rotate(-19deg);
   }
   100% {
     transform: rotate(19deg);
@@ -70,20 +76,20 @@ const CapacitorContainer = styled.div`
 `;
 
 const Capacitor = styled.img`
-  animation: ${rotate} 2s linear infinite;
+  animation: ${rotate} 4s linear infinite;
   margin: 0 auto;
   position: relative;
   transform: rotate(19deg);
   max-width: 300px;
 `;
 
-const CapacitorAlignment = styled.img`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0;
-  width: 100%;
-`;
+// const CapacitorAlignment = styled.img`
+//   position: absolute;
+//   top: 50%;
+//   transform: translateY(-50%);
+//   left: 0;
+//   width: 100%;
+// `;
 
 class Loader extends Component {
   constructor(props) {
@@ -102,6 +108,12 @@ class Loader extends Component {
     this.setLoadingStatus();
   }
 
+  componentWillUnmount() {
+    this.player.current.addEventListener('playing', () => {
+      this.setState({ isVideoPlaying: false });
+    });
+  }
+
   setLoadingStatus = () => {
     const { isLoading } = this.props;
     const b = setInterval(() => {
@@ -116,7 +128,7 @@ class Loader extends Component {
         clearInterval(b);
       }
     }, 250);
-  }
+  };
 
   render() {
     const { hideContent, isVideoPlaying } = this.state;
@@ -131,7 +143,7 @@ class Loader extends Component {
             <LoaderLine number={88} />
             <CapacitorContainer>
               <Capacitor src={CapacitorIcon} alt="Loading" />
-              <CapacitorAlignment src={CapacitorAlignmentIcon} alt="" />
+              {/* <CapacitorAlignment src={CapacitorAlignmentIcon} alt="" /> */}
             </CapacitorContainer>
             <LoaderLine bottom />
             <LoaderBar />
