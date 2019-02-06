@@ -103,7 +103,6 @@ class Loader extends Component {
 
   setLoadingStatus = () => {
     const b = setInterval(() => {
-      console.info(this.player.current.currentTime);
       if (this.player.current.currentTime >= 4.9) {
         this.setState({ hideContent: true });
         clearInterval(b);

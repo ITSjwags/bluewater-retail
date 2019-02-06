@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import Input from './input';
 import Button from '../common/button';
 import FormMp4 from '../../assets/form-bg.mp4';
@@ -82,6 +82,24 @@ const ErrorMessage = styled.p`
   color: red;
 `;
 
+const fadeOut = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+const Confirmation = styled.p`
+  animation: ${fadeOut} 250ms ease-out reverse forwards;
+  opacity: 0;
+
+  ${({ sent }) => sent && css`
+    animation: ${fadeOut} 250ms ease-out forwards;
+  `}
+`;
+
 class Contact extends Component {
   constructor(props) {
     super(props);
@@ -92,6 +110,7 @@ class Contact extends Component {
       email: '',
       phone: '',
       isSending: false,
+      sent: false,
       error: null,
     };
   }
@@ -107,6 +126,7 @@ class Contact extends Component {
 
     this.setState({
       isSending: true,
+      sent: false,
     });
 
     fetch('/.netlify/functions/retail-leads', {
@@ -129,19 +149,25 @@ class Contact extends Component {
         }
         return json;
       })
-      .then(() => this.setState({
-        isSending: false,
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-      }))
+      .then(() => {
+        this.setState({
+          isSending: false,
+          sent: true,
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          error: '',
+        });
+        setTimeout(() => this.setState({ sent: false }), 2000);
+      })
       .catch((err) => {
         // alert(err.message);
         console.error(err);
         this.setState({
           error: err.messsage,
           isSending: false,
+          sent: false,
         });
       });
   };
@@ -159,6 +185,7 @@ class Contact extends Component {
       email,
       phone,
       isSending,
+      sent,
       error,
     } = this.state;
     return (
@@ -180,7 +207,7 @@ class Contact extends Component {
             >
               {error && (
                 <ErrorMessage>
-                  Whoops! There was an error submitting the form. Please try again.
+                  Great Scott! There was an error submitting the form. Please try again.
                 </ErrorMessage>
               )}
               <Input
@@ -215,7 +242,11 @@ class Contact extends Component {
                 onInputChange={this.handleInputChange}
                 required
               />
-              <Button text={isSending ? 'Sending' : 'Submit my info'} type="submit" fullWidth />
+              <Button text={isSending ? 'Submitting...' : 'Submit my info'} type="submit" fullWidth />
+              <Confirmation sent={sent}>
+                Good news! Your info has successfully been sent from the future.
+                You’ll be hearing from us soon.
+              </Confirmation>
             </Form>
           </Content>
         </Wrapper>

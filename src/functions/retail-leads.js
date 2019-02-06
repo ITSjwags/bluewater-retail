@@ -21,22 +21,22 @@ const createLead = async data => {
   return Promise.resolve();
 };
 
-exports.handler = async function (event, context, callback) {
+exports.handler = async function (event) {
   console.log('body: ', event.body);
 
   // bail if body is missing
   if (!event.body) {
-    return callback(null, {
+    return {
       statusCode: 400,
       body: JSON.stringify({
         error: "missing body"
       })
-    });
+    };
   }
 
   // post to pardot
   try {
-    console.info('event received', event.body);
+    console.log('event received', event.body);
     const body = JSON.parse(event.body);
     const { firstName, lastName, email, phone } = body;
 
@@ -47,20 +47,20 @@ exports.handler = async function (event, context, callback) {
       phone
     });
 
-    return callback(null, {
+    return {
       statusCode: 200,
       body: JSON.stringify({
         emailAdded: true
       })
-    })
+    }
   } catch (err) {
     console.error('lead submission error:', err.message);
-    return callback(null, {
+    return {
       statusCode: 500,
       body: JSON.stringify({
         error: "An unknown error occurred"
       })
-    });
+    };
   }
 }
 

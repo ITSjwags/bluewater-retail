@@ -66,12 +66,12 @@ const LoadingStatus = styled.div`
 class LoaderBar extends Component {
   componentDidMount() {
     new TypeIt('.typeit', {
-      strings: ['GENERATING 1.21 GIGAWATTS...', 'ACCELERATING TO 88 MPH...'],
-      speed: 35,
+      strings: ['GENERATING 1.21 GIGAWATTS...'],
+      speed: 50,
       lifeLike: true,
       cursor: false,
       breakLines: false,
-      nextStringDelay: 500,
+      nextStringDelay: 1000,
     }).go();
   }
 

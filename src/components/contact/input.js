@@ -76,6 +76,7 @@ const Input = ({
   type,
   inputValue,
   onInputChange,
+  required,
 }) => (
   <Container>
     <StyledInput
@@ -85,6 +86,7 @@ const Input = ({
       id={name}
       placeholder={label}
       value={inputValue || ''}
+      required={required}
     />
     <Label htmlFor={name} hasValue={!!inputValue}>{label}</Label>
   </Container>
@@ -96,10 +98,12 @@ Input.propTypes = {
   type: PropTypes.string.isRequired,
   onInputChange: PropTypes.func.isRequired,
   inputValue: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 Input.defaultProps = {
   inputValue: '',
+  required: false,
 };
 
 export default Input;
