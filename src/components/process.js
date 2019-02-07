@@ -87,9 +87,9 @@ const Process = () => (
         <Copy>
           <h4>Consultation</h4>
           <p>
-            Transforming the retail experience doesn’t occur by happenstance. It also isn’t a
-            one-size-fits-all type of situation. Aligning around the objectives and desired
-            outcomes is critical to program success.
+            Transforming the retail experience doesn’t occur by happenstance, & there’s certainly
+            not any kind of one-size-fits-all approach. We’ve built a great process to help align
+            around the desired outcomes.
           </p>
         </Copy>
       </Block>
@@ -100,8 +100,8 @@ const Process = () => (
         <Copy>
           <h4>Design</h4>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam gravida lacus quis ex
-            malesuada tincidunt. Sed tristique dolor quis sapien efficitur, at mollis dui auctor.
+            You shouldn’t have to sacrifice store aesthetics to make an impact with the new shopper.
+            Our technology forward design approach keeps things looking just as good as they work.
           </p>
         </Copy>
       </Block>
@@ -112,8 +112,9 @@ const Process = () => (
         <Copy>
           <h4>Technology</h4>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam gravida lacus quis ex
-            malesuada tincidunt. Sed tristique dolor quis sapien efficitur, at mollis dui auctor.
+            It’s not much of a surprise that the new retail is heavily driven by technology. With so
+            many options available it can be difficult to nagivate. We help retailers by taking the
+            guess work out of tech.
           </p>
         </Copy>
       </Block>
@@ -124,8 +125,9 @@ const Process = () => (
         <Copy>
           <h4>Fabrication</h4>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam gravida lacus quis ex
-            malesuada tincidunt. Sed tristique dolor quis sapien efficitur, at mollis dui auctor.
+            Technology & fabrication? Our roots happen to be in both. We’re setup to design,
+            engineer, and manufature our own fixtures in house. From one off environments, to
+            fixtures programs at scale.
           </p>
         </Copy>
       </Block>
