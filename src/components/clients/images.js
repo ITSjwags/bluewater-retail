@@ -7,7 +7,7 @@ import FordSrc from '../../assets/client-ford.png';
 import CarSrc from '../../assets/client-car.png';
 import BBSrc from '../../assets/client-bb.png';
 import NikeSrc from '../../assets/client-nike.png';
-import VerSrc from '../../assets/client-ver.png';
+import KBSrc from '../../assets/client-kb.png';
 import LCSrc from '../../assets/client-lc.png';
 import WFSrc from '../../assets/client-wf.png';
 
@@ -59,8 +59,8 @@ const images = [
   },
   {
     id: 10,
-    name: 'Verizon',
-    url: VerSrc,
+    name: 'KeyBank',
+    url: KBSrc,
   },
   {
     id: 11,
